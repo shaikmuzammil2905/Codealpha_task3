@@ -1,0 +1,46 @@
+import re
+
+# Define predefined responses for FAQs
+faq_patterns = [
+    {
+        "pattern": r"what is your name\?",
+        "response": "I'm a chatbot designed to answer FAQs. You can call me FAQBot."
+    },
+    {
+        "pattern": r"how are you\?",
+        "response": "I'm just a computer program, so I don't have feelings, but I'm here to help you!"
+    },
+    {
+        "pattern": r"(.*)\s(location|located)\?",
+        "response": "I am a virtual assistant, so I don't have a physical location. I exist wherever you need me!"
+    },
+    {
+        "pattern": r"what (can|do) you do\??",
+        "response": "I can help answer your frequently asked questions (FAQs). Just ask me anything!"
+    },
+    {
+        "pattern": r"bye|goodbye",
+        "response": "Goodbye! Have a great day!"
+    },
+]
+
+def find_response(user_input):
+    for faq in faq_patterns:
+        match = re.match(faq["pattern"], user_input, re.IGNORECASE)
+        if match:
+            return faq["response"]
+    return "I'm sorry, I don't understand that question."
+
+# Create Chatbot
+def faq_bot():
+    print("Hi! I'm FAQBot. How can I help you today?")
+    while True:
+        user_input = input("> ")
+        if user_input.lower() in ["quit", "bye", "goodbye"]:
+            print("Goodbye! Have a great day!")
+            break
+        response = find_response(user_input)
+        print(response)
+
+if name == "main":
+    faq_bot()
